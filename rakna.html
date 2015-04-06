@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<script src="./rakna_files/jquery.min.js">
+</script>
+<script>
+var current_val = 4;
+var values = [4, 1, 2, 3, 4, 5, 6, 4, 5, 4, 6, 7];
+var correct_count = 0;
+
+function setColor(idx){
+    var property = document.getElementById('b' + idx);
+    if (values[idx] == current_val) {
+      property.style.backgroundColor = "#00FF00";
+      correct_count++;
+      if (correct_count == 2) {
+        window.setTimeout(setup, 1000);
+      }
+    } else {
+      property.style.backgroundColor = "#FF0000";
+    }
+};
+
+function random_val(limit) {
+    return Math.floor((Math.random() * limit) + 1);
+}
+
+function generate_title(value) {
+    var left = random_val(15);
+    if (left > value) {
+      var right = left - value;
+      return left + ' - ' + right;
+    } else {
+      var right = value - left;
+      return left + ' + ' + right;
+    }
+}
+
+function setup() {
+    current_val = random_val(15);
+    var first_correct = random_val(12) - 1;
+    var second_correct = random_val(12) - 1;
+    if (first_correct == second_correct) {
+      second_correct = (second_correct + 1) % 12;
+    }
+
+    var top = 1;
+
+    for (i = 0; i < 12; i++){
+      if (i == first_correct || i == second_correct) {
+        values[i] = current_val;
+      } else {
+        values[i] = top++;
+      }
+      var property = document.getElementById('b' + i);
+      property.innerHTML = generate_title(values[i]);
+      property.style.backgroundColor = 'lightgray';
+    }
+    correct_count = 0;
+}
+</script>
+
+  <style type="text/css">
+    div{
+     text-align: center;   
+    }
+    button
+    {
+        font-size: 30px;
+        width: 180px;
+        height: 180px;
+        border-radius: 100%;
+        border: 1px solid #000;
+   }
+}
+  </style>
+</head>
+<body onload="setup()">
+
+<br>
+<br>
+<div>
+  <button id="b0"  onclick="setColor(0)">8 - 4</button> 
+  <button id="b1"  onclick="setColor(1)">n</button> 
+  <button id="b2"  onclick="setColor(2)">n</button> 
+  <button id="b3"  onclick="setColor(3)">n</button> 
+</div>
+<div>
+  <button id="b4"  onclick="setColor(4)">8 - 4</button> 
+  <button id="b5"  onclick="setColor(5)">n</button> 
+  <button id="b6"  onclick="setColor(6)">n</button> 
+  <button id="b7"  onclick="setColor(7)">n</button> 
+</div>
+<div>
+  <button id="b8"  onclick="setColor(8)">8 - 4</button> 
+  <button id="b9"  onclick="setColor(9)">n</button> 
+  <button id="b10"  onclick="setColor(10)">n</button> 
+  <button id="b11"  onclick="setColor(11)">n</button> 
+</div>
+
+</body></html>
