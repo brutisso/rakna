@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://cr.openjdk.java.net/~brutisso/gp.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<script src="./gp_files/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.post("http://192.168.0.101/cgi/leds.cgi?led=0");
+    window.setTimeout(function(){
+      $.post("http://192.168.0.101/cgi/leds.cgi?led=0");
+     }, 1000);
+  });
+});
+</script>
+
+  <style type="text/css">
+    div{
+     text-align: center;   
+    }
+    button#bopen
+    {
+        font-size: 50px;
+        width: 400px;
+        height: 400px;
+    }
+  </style>
+</head>
+<body>
+
+<br>
+<br>
+<div><button id="bopen">Open Sesame</button></div>
+
+
+
+</body></html>
