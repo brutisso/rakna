@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://cr.openjdk.java.net/~brutisso/gp.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<script src="./rakna_files/jquery.min.js">
+</script>
+<script>
+
+var inputHTML = "<input id='res' onkeyup='keyhandler()' />"
+var result = 0;
+var largest_num = 20;
+
+function random_val(limit) {
+    return Math.floor((Math.random() * limit) + 1);
+}
+
+function keyhandler() {
+    var property = document.getElementById('res');
+    if (property.value == result) {
+      property.style.backgroundColor = "#00FF00"
+       window.setTimeout(setup, 1000);
+    } else {
+      property.style.backgroundColor = "#FF0000"
+    }
+}
+
+function setup() {
+    result = random_val(largest_num);
+    var left = random_val(largest_num);
+
+    var property = document.getElementById('main');
+    if (left > result) {
+      var right = left - result;
+      property.innerHTML = left + " - " + right + " = " + inputHTML;
+    } else {
+      var right = result - left;
+      property.innerHTML = left + " + " + right + " = " + inputHTML;
+    }
+    var property = document.getElementById('res');
+    property.focus();
+}
+
+</script>
+
+  <style type="text/css">
+    div{
+     text-align: center;
+     font-size: 50px;   
+    }
+    button
+    {
+        font-size: 20px;
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        border: 1px solid #000;
+   }
+   input
+   {
+        font-size: 50px;
+        width: 100px;
+   }
+}
+  </style>
+</head>
+<body onload="setup()">
+
+<br>
+<br>
+
+<div id="main">11 + 13 = <input> </input> </div>
+
+</body></html>
